@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
     public bool swap = false;
     public bool reload = true;
 
-    public int threshold = 1;
+    public double threshold = 1;
 
     // Start is called before the first frame update
     void Start() {
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
     
     // Update is called once per frame
     void Update() {
-        if(track1 != null && track2 != null && DistanceBetweenMarkers(track1, track2) < threshold && swap == true){
+        if(track1 != null && track2 != null && DistanceBetweenMarkers(track1, track2) <= threshold && swap == true){
             SwapModel();
             reload = false;
         }
@@ -40,9 +40,9 @@ public class GameManager : MonoBehaviour {
     }
 
     double DistanceBetweenMarkers(TrackableBehaviour t1, TrackableBehaviour t2){
-        double dist = Mathf.Min((t1.gameObject.transform.position.x-t2.gameObject.transform.position.x), 
-                                (t1.gameObject.transform.position.y-t2.gameObject.transform.position.y), 
-                                (t1.gameObject.transform.position.z-t2.gameObject.transform.position.z));
+        double dist = Mathf.Sqrt((t1.gameObject.transform.position.x-t2.gameObject.transform.position.x)*(t1.gameObject.transform.position.x-t2.gameObject.transform.position.x)+
+                                 (t1.gameObject.transform.position.y-t2.gameObject.transform.position.y)*(t1.gameObject.transform.position.y-t2.gameObject.transform.position.y)+
+                                 (t1.gameObject.transform.position.z-t2.gameObject.transform.position.z)*(t1.gameObject.transform.position.z-t2.gameObject.transform.position.z));
         if (track1bool == track2bool && reload == true){
             swap = true;
         }
