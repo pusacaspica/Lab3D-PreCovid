@@ -8,16 +8,29 @@ public class AtomElementBuilder : MonoBehaviour {
     public GameObject self;
     public float eletrosphereRadius = 10;
     public float eletronSpeed = 100;
+    public Material coreMaterial;
+    public Material eletronMaterial;
     // Start is called before the first frame update
     void Start() {
-        GameObject nucleus = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        nucleus.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
-        nucleus.transform.localScale += new Vector3(element.atomicMass, element.atomicMass, element.atomicMass);
-        self.transform.parent = nucleus.transform;
+        self.transform.localScale += new Vector3(element.atomicMass/2, element.atomicMass/2, element.atomicMass/2);
+        self.GetComponent<Renderer>().material = coreMaterial;
         foreach (int i in Enumerable.Range(1, element.valence)){
             GameObject eletron = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            eletron.transform.position = nucleus.transform.position + new Vector3(0, eletrosphereRadius, 0);
-            eletron.transform.RotateAround(nucleus.transform.localScale, Vector3.right, eletronSpeed*Time.deltaTime);
+            eletron.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            eletron.transform.position = new Vector3(eletrosphereRadius*Mathf.Sin(i), 
+                                                          eletrosphereRadius*Mathf.Cos(i), 
+                                                          0);
+            eletron.transform.RotateAround(self.transform.localScale, Vector3.right, eletronSpeed*Time.deltaTime);
+            eletron.transform.parent = self.transform;
+            eletron.GetComponent<Renderer>().material = eletronMaterial;
+        }
+    }
+
+    void FixedUpdate(){
+        GameObject eletron;
+        foreach(int i in Enumerable.Range(0,self.transform.childCount)){
+            eletron = self.transform.GetChild(i).gameObject;
+            eletron.gameObject.transform.RotateAround(eletron.gameObject.transform.parent.position, Vector3.up + new Vector3(0, Mathf.Sin(i), Mathf.Cos(i)), eletronSpeed*Time.deltaTime);
         }
     }
 }

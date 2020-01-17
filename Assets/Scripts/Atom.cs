@@ -11,7 +11,7 @@ public class Atom : MonoBehaviour {
     public TrackableBehaviour self;
 
     public GameManager gm;
-
+    
     public Atom(string Name, int Valence, TrackableBehaviour Self){
         this.Name = Name;
         this.Valence = Valence;
