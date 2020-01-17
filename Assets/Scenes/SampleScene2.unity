@@ -872,7 +872,8 @@ MonoBehaviour:
   self: {fileID: 1693497765}
   eletrosphereRadius: 10
   eletronSpeed: 100
-  rotationVector: {x: 0.7, y: 0.6, z: -0.5}
+  coreMaterial: {fileID: 2100000, guid: ee9003dd1e2d8664098698c7996405f5, type: 2}
+  eletronMaterial: {fileID: 2100000, guid: bf9949c8a07e37d488b25da5a4b00016, type: 2}
 --- !u!135 &1693497767
 SphereCollider:
   m_ObjectHideFlags: 0
