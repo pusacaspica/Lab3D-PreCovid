@@ -14,8 +14,8 @@ public class AtomElementBuilder : MonoBehaviour {
     public Material eletronMaterial;
     // Start is called before the first frame update
     void Start() {
-        eletrosphereRadius += element.atomicNumber;
-        self.transform.localScale += new Vector3(element.atomicMass/2, element.atomicMass/2, element.atomicMass/2);
+        eletrosphereRadius += element.atomicMass/10;
+        self.transform.localScale += new Vector3(element.atomicMass/10, element.atomicMass/10, element.atomicMass/10);
         Debug.Log(Enumerable.Range(2,1).ToString());
         int lastEletronLayer;
         if (element.valence==0){
