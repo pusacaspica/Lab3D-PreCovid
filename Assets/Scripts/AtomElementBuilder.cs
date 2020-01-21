@@ -14,15 +14,23 @@ public class AtomElementBuilder : MonoBehaviour {
     public Material eletronMaterial;
     // Start is called before the first frame update
     void Start() {
+        eletrosphereRadius += element.atomicNumber;
         self.transform.localScale += new Vector3(element.atomicMass/2, element.atomicMass/2, element.atomicMass/2);
         Debug.Log(Enumerable.Range(2,1).ToString());
-        foreach (int i in Enumerable.Range(1, element.valence)){
+        int lastEletronLayer;
+        if (element.valence==0){
+            if (element.atomicNumber==2) lastEletronLayer = 2;
+            else lastEletronLayer = 8;
+        } else {
+            lastEletronLayer = element.valence;
+        }
+        foreach (int i in Enumerable.Range(1, lastEletronLayer)){
             GameObject eletron = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             eletron.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             eletron.transform.position = new Vector3( 
-                                                     eletrosphereRadius*Mathf.Cos((i-1)*2*Mathf.PI/element.valence), 
+                                                     eletrosphereRadius*Mathf.Cos((i-1)*2*Mathf.PI/lastEletronLayer), 
                                                      0,
-                                                     eletrosphereRadius*Mathf.Sin((i-1)*2*Mathf.PI/element.valence)
+                                                     eletrosphereRadius*Mathf.Sin((i-1)*2*Mathf.PI/lastEletronLayer)
                                                      );
             eletron.transform.RotateAround(self.transform.localScale, Vector3.right, eletronSpeed*Time.deltaTime);
             eletron.transform.parent = self.transform;
