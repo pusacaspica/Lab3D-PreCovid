@@ -16,3 +16,5 @@ MonoBehaviour:
   atomicNumber: 2
   atomicMass: 4
   valence: 0
+  lastEletronLayer: 2
+  atomicGroup: 4

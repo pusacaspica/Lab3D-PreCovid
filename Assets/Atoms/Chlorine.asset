@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f92091f866d3be64b91dde833cd0e596, type: 3}
-  m_Name: Neon
+  m_Name: Chlorine
   m_EditorClassIdentifier: 
-  name: Neon
-  atomicNumber: 10
-  atomicMass: 20
-  valence: 0
-  lastEletronLayer: 8
-  atomicGroup: 5
+  name: Chlorine
+  atomicNumber: 17
+  atomicMass: 35.5
+  valence: 1
+  lastEletronLayer: 7
+  atomicGroup: 2

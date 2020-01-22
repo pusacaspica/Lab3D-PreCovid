@@ -6,22 +6,18 @@ using Vuforia;
 
 public class Atom : MonoBehaviour {
 
-    public AtomElementBuilder elementBuilded;
+    public Element element;
     public string Name;
-    public int Valence;
+    public int valence;
     public TrackableBehaviour self;
     private GameObject Nucleus;
     public List<GameObject> eletrons = new List<GameObject>();
 
     public GameManager gm;
-    
-    public Atom(string Name, int Valence, TrackableBehaviour Self){
-        this.Name = Name;
-        this.Valence = Valence;
-        this.self = Self;
-    }
 
     void Start(){
+        this.Name = element.name;
+        this.valence = element.valence;
         Nucleus = this.gameObject.transform.GetChild(0).gameObject;
         if (!Nucleus.activeSelf){
             Nucleus.SetActive(true);
@@ -30,19 +26,18 @@ public class Atom : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        Debug.Log(Nucleus.transform.childCount);
         if (self.CurrentStatus == TrackableBehaviour.Status.TRACKED || self.CurrentStatus == TrackableBehaviour.Status.EXTENDED_TRACKED){
             if(gm.reload == true) self.gameObject.transform.GetChild(0).gameObject.SetActive(true);
             if (gm.track1bool == false){
                 gm.track1bool = true;
                 gm.track1 = self;
-                foreach(int i in Enumerable.Range(1,Nucleus.transform.childCount)){
+                foreach(int i in Enumerable.Range(0,Nucleus.transform.childCount)){
                     Nucleus.transform.GetChild(i).gameObject.SetActive(true);
                 }
             } else if (gm.track2bool == false && gm.track1 != self){
                 gm.track2bool = true;
                 gm.track2 = self;
-                foreach(int i in Enumerable.Range(1,Nucleus.transform.childCount)){
+                foreach(int i in Enumerable.Range(0,Nucleus.transform.childCount)){
                     Nucleus.transform.GetChild(i).gameObject.SetActive(true);
                 }
             } else{
@@ -58,13 +53,13 @@ public class Atom : MonoBehaviour {
                 gm.track1bool = gm.track2bool;
                 gm.track2 = null;
                 gm.track2bool = false;
-                foreach(int i in Enumerable.Range(1,Nucleus.transform.childCount)){
+                foreach(int i in Enumerable.Range(0,Nucleus.transform.childCount)){
                     Nucleus.transform.GetChild(i).gameObject.SetActive(false);
                 }
             } else if (gm.track2 == self){
                 gm.track2bool = false;
                 gm.track2 = null;
-                foreach(int i in Enumerable.Range(1,Nucleus.transform.childCount)){
+                foreach(int i in Enumerable.Range(0,Nucleus.transform.childCount)){
                     Nucleus.transform.GetChild(i).gameObject.SetActive(false);
                 }
             } else{
@@ -72,11 +67,11 @@ public class Atom : MonoBehaviour {
             }
             if (self.gameObject.transform.childCount > 1){
                 foreach(int childIndex in Enumerable.Range(1,self.gameObject.transform.childCount)){
-                    Debug.Log(childIndex);
                     Destroy(self.gameObject.transform.GetChild(childIndex).gameObject);
                 }            
             }
         }
+        //self.gameObject.transform.localRotation=new Quaternion(0,0,0,0);
     }
 
 }
