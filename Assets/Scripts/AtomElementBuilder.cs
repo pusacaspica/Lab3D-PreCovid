@@ -78,7 +78,7 @@ public class AtomElementBuilder : MonoBehaviour {
         GameObject eletron;
         foreach(int i in System.Linq.Enumerable.Range(0,self.transform.childCount)){
             eletron = self.transform.GetChild(i).gameObject;
-            Debug.Log(element.name.ToString()+", "+eletron.gameObject.transform.parent.localPosition.ToString() + ", " + eletron.gameObject.transform.parent.position.ToString());
+            //Debug.Log(element.name.ToString()+", "+eletron.gameObject.transform.parent.localPosition.ToString() + ", " + eletron.gameObject.transform.parent.position.ToString());
             eletron.gameObject.transform.RotateAround(
                                                       self.transform.position, 
                                                       new Vector3(0,1,0), 

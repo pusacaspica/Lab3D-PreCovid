@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
     public bool swap = false;
     public bool reload = true;
 
+    //minimal distance between atoms to molecule to be built is around 7. 
     public double threshold = 1;
 
     // Start is called before the first frame update
@@ -20,7 +21,15 @@ public class GameManager : MonoBehaviour {
     
     // Update is called once per frame
     void Update() {
-        if(track1 != null && track2 != null && DistanceBetweenMarkers(track1, track2) <= threshold && swap == true){
+        Debug.Log(DistanceBetweenMarkers(track1, track2));
+        /*
+            if:
+                there are two trackable objects at a given time;
+                the two trackable objects are close enough to justify the chemical reaction;
+                the both of them can be bonded without disrupting the valence of the universe
+                there can be any swapping
+        */
+        if(track1 != null && track2 != null && DistanceBetweenMarkers(track1, track2) <= threshold && 0 <= CalculateValence(track1.GetComponent<Element>().valence, track2.GetComponent<Element>().valence) && swap == true){
             SwapModel();
             reload = false;
         }
@@ -29,10 +38,12 @@ public class GameManager : MonoBehaviour {
     void SwapModel(){
         GameObject trackableMarker = track1.gameObject;
         GameObject otherTrackableGameObject = track2.gameObject;
-        Instantiate(otherTrackableGameObject.gameObject.transform.GetChild(0).gameObject,
+        GameObject clone = Instantiate(otherTrackableGameObject.gameObject.transform.GetChild(0).gameObject,
                     trackableMarker.gameObject.transform.GetChild(0).gameObject.transform.position,
                     otherTrackableGameObject.gameObject.transform.GetChild(0).gameObject.transform.rotation,
                     trackableMarker.transform);
+        //TODO: Create a Molecule class
+        clone.AddComponent<Molecule>();
         otherTrackableGameObject.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         swap = false;
         //clone.transform.localRotation = trackableMarker.gameObject.transform.GetChild(0).gameObject.transform.localRotation;
@@ -47,5 +58,13 @@ public class GameManager : MonoBehaviour {
             swap = true;
         }
         return dist;
+    }
+
+    int CalculateValence(int track1, int track2){
+        if (track2 > track1){
+            return track2 - track1;
+        } else {
+            return track1 - track2;
+        }
     }
 }
