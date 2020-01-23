@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Hydrogen
   m_EditorClassIdentifier: 
   name: Hydrogen
+  alias: H
   atomicNumber: 1
   atomicMass: 2
   valence: 1
   lastEletronLayer: 1
+  atomicGroup: 0

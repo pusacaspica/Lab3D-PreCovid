@@ -7,6 +7,7 @@ using UnityEditor;
 public class Element : ScriptableObject {
 
     public new string name;
+    public string alias;
     public int atomicNumber;
     public float atomicMass;
     public int valence;

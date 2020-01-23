@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Sodium
   m_EditorClassIdentifier: 
   name: Sodium
+  alias: Na
   atomicNumber: 11
   atomicMass: 23
   valence: 1

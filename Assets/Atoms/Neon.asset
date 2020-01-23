@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Neon
   m_EditorClassIdentifier: 
   name: Neon
+  alias: Ne
   atomicNumber: 10
   atomicMass: 20
   valence: 0

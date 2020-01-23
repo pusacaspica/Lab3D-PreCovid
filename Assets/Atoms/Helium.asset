@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Helium
   m_EditorClassIdentifier: 
   name: Helium
+  alias: He
   atomicNumber: 2
   atomicMass: 4
   valence: 0

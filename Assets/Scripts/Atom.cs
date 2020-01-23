@@ -11,7 +11,6 @@ public class Atom : MonoBehaviour {
     public int valence;
     public TrackableBehaviour self;
     private GameObject Nucleus;
-    public List<GameObject> eletrons = new List<GameObject>();
 
     public GameManager gm;
 
