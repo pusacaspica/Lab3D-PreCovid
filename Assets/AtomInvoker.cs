@@ -15,7 +15,7 @@ public class AtomInvoker : MonoBehaviour
         Element = atom.GetComponent<AtomElementBuilder>();
         Pop = atom.GetComponent<ParticleSystem>();
         Pop.Stop();
-        Pop.GetComponent<Renderer>().material = Element.gameObject.GetComponent<Renderer>().material;
+        Pop.GetComponent<ParticleSystemRenderer>().material = Element.gameObject.GetComponent<Renderer>().material;
         Debug.Log(atom.name);
         AtomAnimator = atom.GetComponent<Animator>();
         AtomAnimator.SetBool("AtomInvoked", false);
