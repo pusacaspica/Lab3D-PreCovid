@@ -7,7 +7,6 @@ public class AtomElementBuilder : MonoBehaviour {
 
     [SerializeField][Range(0.0f, 1.0f)]
     private float Tilt = 1;
-    public Atom atom;
     public int valence;
     public Element element;
     public GameObject self;

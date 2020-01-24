@@ -36,7 +36,6 @@ public class AtomName : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        Debug.Log(GodsMistake.anchoredPosition.ToString()+", "+this.transform.position.ToString());
         GodsMistake.anchoredPosition = anchoredposition;
         this.transform.localRotation = Quaternion.Euler(90f,90f,90f);
     }
