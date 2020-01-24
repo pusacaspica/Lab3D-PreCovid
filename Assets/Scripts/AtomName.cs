@@ -6,18 +6,22 @@ using Vuforia;
 
 public class AtomName : MonoBehaviour
 {
+    public Vector2 anchoredposition;
     public GameObject self;
+    public Vector3 offset;
     private Vector3 InitialPos;
     private TMP_Text LegendName;
     public GameObject nucleus;
     public TrackableBehaviour trackable;
+    private RectTransform GodsMistake;
     public enum TypeOfText{
         Alias, Name, AtomicMass, AtomicNumber
     };
     public TypeOfText typeOfText;
     // Start is called before the first frame update
     void Start() {
-        InitialPos = this.transform.position;
+        GodsMistake = this.GetComponent<RectTransform>();
+        anchoredposition = GodsMistake.anchoredPosition;
         LegendName = GetComponent<TMP_Text>();
         if (typeOfText==TypeOfText.Alias){
             LegendName.text = nucleus.GetComponent<AtomElementBuilder>().element.alias;
@@ -32,8 +36,8 @@ public class AtomName : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        this.transform.position = InitialPos;
-        this.transform.rotation = Quaternion.Euler(90f,0,0);
-        //this.transform.localRotation = Quaternion.Euler(0,-90f,0);
+        Debug.Log(GodsMistake.anchoredPosition.ToString()+", "+this.transform.position.ToString());
+        GodsMistake.anchoredPosition = anchoredposition;
+        this.transform.localRotation = Quaternion.Euler(90f,90f,90f);
     }
 }

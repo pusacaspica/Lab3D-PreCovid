@@ -6,10 +6,10 @@ using UnityEditor;
 [CreateAssetMenu(fileName="New Element", menuName="Element")]
 public class Element : ScriptableObject {
 
-    public new string name;
-    public string alias;
-    public int atomicNumber;
-    public float atomicMass;
+    public new string name = "dunno";
+    public string alias = "idk";
+    public int atomicNumber = 0;
+    public float atomicMass = 0.0f;
     public int valence;
     public int lastEletronLayer;
     public atomicType atomicGroup;

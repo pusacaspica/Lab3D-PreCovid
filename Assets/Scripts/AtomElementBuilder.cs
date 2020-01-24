@@ -5,6 +5,8 @@ using UnityEditor;
 using System;
 public class AtomElementBuilder : MonoBehaviour {
 
+    [SerializeField][Range(0.0f, 1.0f)]
+    private float Tilt = 1;
     public Atom atom;
     public int valence;
     public Element element;
@@ -30,6 +32,7 @@ public class AtomElementBuilder : MonoBehaviour {
         if(eletrosphere.Count < element.valence){
             foreach (int i in System.Linq.Enumerable.Range(1, lastEletronLayer)){
                 GameObject eletron = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                eletron.name = "eletron";
                 eletron.transform.localScale = new Vector3(self.transform.localScale.x/2,self.transform.localScale.y/2,self.transform.localScale.z/2);
                 eletron.transform.localPosition = new Vector3( 
                                                         eletrosphereRadius*Mathf.Cos((i-1)*2*Mathf.PI/lastEletronLayer), 
@@ -84,10 +87,13 @@ public class AtomElementBuilder : MonoBehaviour {
         GameObject eletron;
         foreach(int i in System.Linq.Enumerable.Range(0,self.transform.childCount)){
             eletron = self.transform.GetChild(i).gameObject;
+            if (eletron.name != "eletron"){
+                continue;
+            }
             //Debug.Log(element.name.ToString()+", "+eletron.gameObject.transform.parent.localPosition.ToString() + ", " + eletron.gameObject.transform.parent.position.ToString());
             eletron.gameObject.transform.RotateAround(
                                                       self.transform.position, 
-                                                      new Vector3(0,1,0), 
+                                                      new Vector3(1-Tilt,0,Tilt), 
                                                       eletronSpeed*Time.deltaTime
                                                     );
             eletron.gameObject.transform.localPosition = new Vector3(eletron.gameObject.transform.localPosition.x, eletron.gameObject.transform.localPosition.y, eletron.gameObject.transform.localPosition.z);
