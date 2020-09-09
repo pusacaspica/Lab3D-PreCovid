@@ -12,6 +12,6 @@ There are two different applications inside this repository:
 
 There are a couple of things that are still to be done within this project:
  - represent different types of chemical bond between atoms
- - optimize bonding so every possible molecule isn't just a prefab waiting to be loaded
+ - optimize bonding so every possible molecule isn't just a prefab waiting to be loaded (which isn't that big of a problem, once the application was originally intended for a specific environment)
  
  Rio de Janeiro, 2020
